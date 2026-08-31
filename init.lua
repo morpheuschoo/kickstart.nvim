@@ -190,6 +190,7 @@ do
   vim.diagnostic.config {
     update_in_insert = false,
     severity_sort = true,
+    signs = false,
     float = { border = 'rounded', source = 'if_many' },
     underline = { severity = { min = vim.diagnostic.severity.WARN } },
 
@@ -396,11 +397,11 @@ do
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
   vim.pack.add { gh 'folimorris/onedarkpro.nvim' }
   ---@diagnostic disable-next-line: missing-fields
-  -- require('tokyonight').setup {
-  --   styles = {
-  --     comments = { italic = false }, -- Disable italics in comments
-  --   },
-  -- }
+  require('onedarkpro').setup {
+    highlights = {
+      TelescopePreviewLine = { bg = '#1e222a', bold = true },
+    },
+  }
 
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
@@ -885,6 +886,7 @@ do
     completion = {
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      menu = { border = 'rounded' },
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
     },
 
