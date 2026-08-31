@@ -395,7 +395,7 @@ do
   -- change the command under that to load whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { gh 'folimorris/onedarkpro.nvim' }
+  vim.pack.add { gh 'olimorris/onedarkpro.nvim' }
   ---@diagnostic disable-next-line: missing-fields
   require('onedarkpro').setup {
     highlights = {
@@ -707,7 +707,7 @@ do
   ---@type table<string, vim.lsp.Config>
   local servers = {
     clangd = {},
-    pyright = {},
+    -- pyright = {},
     ruff = {},
     -- gopls = {},
     -- pyright = {},
