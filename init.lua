@@ -127,6 +127,11 @@ do
   -- Enable break indent
   vim.o.breakindent = true
 
+  vim.opt.tabstop = 4
+  vim.opt.shiftwidth = 4
+  vim.opt.softtabstop = 4
+  vim.opt.expandtab = true
+
   -- Enable undo/redo changes even after closing and reopening a file
   vim.o.undofile = true
 
@@ -344,8 +349,8 @@ do
   --
   -- We first install it from https://github.com/NMAC427/guess-indent.nvim
   -- and then call its `setup()` function to start it with default settings.
-  vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
-  require('guess-indent').setup {}
+  -- vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
+  -- require('guess-indent').setup {}
 
   -- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
   --
@@ -814,12 +819,19 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      tex = { 'latexindent' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+    },
+    -- Custom formatting
+    formatters = {
+      latexindent = {
+        prepend_args = { '-y=defaultIndent:"    ",indentRules:item:"    "' },
+      },
     },
   }
 
@@ -837,7 +849,7 @@ do
   --  See `:help vim.version.range()` for more info
   vim.pack.add { { src = gh 'L3MON4D3/LuaSnip', version = vim.version.range '2.*' } }
   require('luasnip').setup {}
-
+  require('luasnip.loaders.from_lua').lazy_load()
   -- `friendly-snippets` contains a variety of premade snippets.
   --    See the README about individual language/framework/plugin snippets:
   --    https://github.com/rafamadriz/friendly-snippets
@@ -962,6 +974,7 @@ do
   vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
       local buf, filetype = args.buf, args.match
+      if filetype == 'tex' or filetype == 'latex' then return end
 
       local language = vim.treesitter.language.get_lang(filetype)
       if not language then return end
