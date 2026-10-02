@@ -12,5 +12,3 @@ spell/
 nvim-pack-lock.json
 
 .DS_Store
-
-indent.log

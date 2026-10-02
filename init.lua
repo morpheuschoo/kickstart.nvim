@@ -830,7 +830,10 @@ do
     -- Custom formatting
     formatters = {
       latexindent = {
-        prepend_args = { '-y=defaultIndent:"    ",indentRules:item:"    "' },
+        prepend_args = {
+          '-c=/tmp',
+          '-y=defaultIndent:"    ",indentRules:item:"    "',
+        },
       },
     },
   }
