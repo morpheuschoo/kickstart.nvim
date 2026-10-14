@@ -859,6 +859,7 @@ do
   --
   -- vim.pack.add { gh 'rafamadriz/friendly-snippets' }
   -- require('luasnip.loaders.from_vscode').lazy_load()
+  vim.keymap.set({ 'i', 's' }, '<C-z>', "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { noremap = true, desc = 'ui select for choice node' })
 
   -- [[ Autocomplete Engine ]]
   vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
